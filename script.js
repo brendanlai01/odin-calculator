@@ -1,6 +1,7 @@
 let calculator = document.querySelector('#container');
 let displayedResult = document.querySelector('#display');
 let buttons = document.querySelectorAll('#keypad button');
+let operatorButtons = document.querySelectorAll('#operators button');
 let firstNum;
 let operator;
 let secondNum;
@@ -28,15 +29,6 @@ function operate(num1, operation, num2){
     if(operation === '/') return divide(num1, num2);
 }
 
-function setupButtons(){
-    displayedResult.textContent = '0';
-    buttons.forEach((item) =>{
-        item.addEventListener('click', () =>{
-            displayNumber(item);
-        })
-    })
-}
-
 function displayNumber(item){
     if(displayedResult.textContent === '0'){
         displayedResult.textContent = item.textContent;
@@ -45,4 +37,28 @@ function displayNumber(item){
     }
 }
 
-setupButtons();
+function setupKeypad(){
+    displayedResult.textContent = '0';
+    buttons.forEach((item) =>{
+        item.addEventListener('click', () =>{
+            displayNumber(item);
+        })
+    })
+}
+
+function setupOperators(){
+    operatorButtons.forEach((item) =>{
+        item.addEventListener('click', () =>{
+            if(operator === 'undefined'){
+                operator = item.textContent;
+                console.log(operator);
+            }
+            operator = item.textContent;
+            console.log(operator);
+        })
+    })
+}
+
+
+setupKeypad();
+setupOperators();
