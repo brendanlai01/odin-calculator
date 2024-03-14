@@ -32,7 +32,12 @@ function setupButtons(){
     displayedResult.textContent = '0';
     buttons.forEach((item) =>{
         item.addEventListener('click', () =>{
-            displayedResult.textContent += item.textContent;
+            if(displayedResult.textContent === '0'){
+                displayedResult.textContent = item.textContent;
+            }else{
+                displayedResult.textContent += item.textContent;
+            }
+            
         })
     })
 }
