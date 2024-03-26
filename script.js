@@ -78,3 +78,4 @@ function setupEquals(){
 
 setupKeypad();
 setupOperators();
+setupEquals();
