@@ -68,6 +68,13 @@ function setupOperators(){
     })
 }
 
+function setupEquals(){
+    equalsButton.addEventListener('click', () =>{
+        result = operate(firstNum, operator, secondNum);
+        return displayedResult.textContent = result;
+    })
+}
+
 
 setupKeypad();
 setupOperators();
