@@ -53,7 +53,6 @@ function displayNumber(item){
     //     console.log('this is bugged');
     }else if(firstNum != null && operator != null && secondNum == null){
         displayedResult.textContent = item.textContent;
-        console.log('reset display for secondnum');
     }
     else{
         displayedResult.textContent += item.textContent;
@@ -65,19 +64,15 @@ function setupKeypad(){
             if(firstNum == null && operator == null){
                 displayNumber(item);
                 firstNum = displayedResult.textContent;
-                console.log('firstnum if: ' + firstNum);
             }else if(firstNum != null && operator == null){
                 displayNumber(item);
                 firstNum = displayedResult.textContent;
-                console.log('firstnum else if: ' + firstNum);
             }else if(displayedResult.textContent == result && displayedResult.textContent == firstNum){
                 displayedResult.textContent = item.textContent;
                 secondNum = displayedResult.textContent;
-                console.log('secondnum else if: ' + secondNum);
             }else{
                 displayNumber(item);
                 secondNum = displayedResult.textContent;
-                console.log('secondnum else: ' + secondNum);
             }
         })
     })
@@ -88,7 +83,6 @@ function setupOperators(){
         item.addEventListener('click', () =>{
             if(operator == null){
                 operator = item.textContent;
-                console.log('operator null cond: ' + operator);
             }
             else if(firstNum != null && operator != null && secondNum != null){
                 result = operate(firstNum, operator, secondNum);
@@ -96,7 +90,6 @@ function setupOperators(){
                 secondNum = null;
                 operator = item.textContent;
                 displayedResult.textContent = result;
-                console.log('operator pressed again: ' + operator)
             }
         })
     })
