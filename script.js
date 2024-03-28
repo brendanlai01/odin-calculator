@@ -92,7 +92,19 @@ function setupEquals(){
     })
 }
 
+function setupClear(){
+    const clear = document.querySelector('#keypad #clear');
+    clear.addEventListener('click', () =>{
+        displayedResult.textContent = '0';
+        firstNum = null;
+        secondNum = null;
+        result = null;
+        operator = null;
+    })
+}
+
 
 setupKeypad();
 setupOperators();
 setupEquals();
+setupClear();
