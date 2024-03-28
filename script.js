@@ -31,6 +31,10 @@ function divide(num1, num2){
     num1 = Number(num1);
     num2 = Number(num2);
     let sum = num1 / num2;
+    if(num1 === 0 || num2 === 0){
+        alert('Numbers are indivisible by 0!');
+        throw new Error('Numbers are indivisible by 0!');
+    }
     return Number(sum.toFixed(10));
 }
 
@@ -44,9 +48,9 @@ function operate(num1, operation, num2){
 function displayNumber(item){
     if(displayedResult.textContent === '0'){
         displayedResult.textContent = item.textContent;
-    }else if(firstNum !== null && result !== null && secondNum == null){
-        displayedResult.textContent = item.textContent;
-        console.log('this is bugged');
+    // }else if(firstNum !== null && result !== null && secondNum == null){
+    //     displayedResult.textContent = item.textContent;
+    //     console.log('this is bugged');
     }else if(firstNum != null && operator != null && secondNum == null){
         displayedResult.textContent = item.textContent;
         console.log('reset display for secondnum');
@@ -100,10 +104,15 @@ function setupOperators(){
 
 function setupEquals(){
     equalsButton.addEventListener('click', () =>{
-        if(firstNum != null && operator != null && secondNum != null){
+        try{
             result = operate(firstNum, operator, secondNum);
             displayedResult.textContent = result;
-        }else{
+        }catch(err){
+            displayedResult.textContent = '0';
+            firstNum = null;
+            secondNum = null;
+            result = null;
+            operator = null;
             return;
         }
         
