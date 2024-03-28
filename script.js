@@ -45,33 +45,33 @@ function operate(num1, operation, num2){
     if(operation === '÷') return divide(num1, num2);
 }
 
-function displayNumber(item){
+function displayNumber(num){
     if(display.textContent === '0'){
-        display.textContent = item.textContent;
+        display.textContent = num.textContent;
     // }else if(firstNum !== null && result !== null && secondNum == null){
-    //     display.textContent = item.textContent;
+    //     display.textContent = num.textContent;
     //     console.log('this is bugged');
     }else if(firstNum != null && operator != null && secondNum == null){
-        display.textContent = item.textContent;
+        display.textContent = num.textContent;
     }
     else{
-        display.textContent += item.textContent;
+        display.textContent += num.textContent;
     }
 }
 function setupKeypad(){
-    buttons.forEach((item) =>{
-        item.addEventListener('click', () =>{
+    buttons.forEach((num) =>{
+        num.addEventListener('click', () =>{
             if(firstNum == null && operator == null){
-                displayNumber(item);
+                displayNumber(num);
                 firstNum = display.textContent;
             }else if(firstNum != null && operator == null){
-                displayNumber(item);
+                displayNumber(num);
                 firstNum = display.textContent;
             }else if(display.textContent == result && display.textContent == firstNum){
-                display.textContent = item.textContent;
+                display.textContent = num.textContent;
                 secondNum = display.textContent;
             }else{
-                displayNumber(item);
+                displayNumber(num);
                 secondNum = display.textContent;
             }
         })
