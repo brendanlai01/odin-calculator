@@ -79,16 +79,16 @@ function setupKeypad(){
 }
 
 function setupOperators(){
-    operatorButtons.forEach((item) =>{
-        item.addEventListener('click', () =>{
+    operatorButtons.forEach((op) =>{
+        op.addEventListener('click', () =>{
             if(operator == null){
-                operator = item.textContent;
+                operator = op.textContent;
             }
             else if(firstNum != null && operator != null && secondNum != null){
                 result = operate(firstNum, operator, secondNum);
                 firstNum = result;
                 secondNum = null;
-                operator = item.textContent;
+                operator = op.textContent;
                 display.textContent = result;
             }
         })
