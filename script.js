@@ -100,8 +100,13 @@ function setupOperators(){
 
 function setupEquals(){
     equalsButton.addEventListener('click', () =>{
-        result = operate(firstNum, operator, secondNum);
-        displayedResult.textContent = result;
+        if(firstNum != null && operator != null && secondNum != null){
+            result = operate(firstNum, operator, secondNum);
+            displayedResult.textContent = result;
+        }else{
+            return;
+        }
+        
     })
 }
 
