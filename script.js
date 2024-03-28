@@ -1,5 +1,5 @@
 let calculator = document.querySelector('#container');
-let displayedResult = document.querySelector('#display');
+let display = document.querySelector('#display');
 let buttons = document.querySelectorAll('#numbers #keypad button');
 let operatorButtons = document.querySelectorAll('#operators button');
 let equalsButton = document.querySelector('#numbers #equals button');
@@ -46,16 +46,16 @@ function operate(num1, operation, num2){
 }
 
 function displayNumber(item){
-    if(displayedResult.textContent === '0'){
-        displayedResult.textContent = item.textContent;
+    if(display.textContent === '0'){
+        display.textContent = item.textContent;
     // }else if(firstNum !== null && result !== null && secondNum == null){
-    //     displayedResult.textContent = item.textContent;
+    //     display.textContent = item.textContent;
     //     console.log('this is bugged');
     }else if(firstNum != null && operator != null && secondNum == null){
-        displayedResult.textContent = item.textContent;
+        display.textContent = item.textContent;
     }
     else{
-        displayedResult.textContent += item.textContent;
+        display.textContent += item.textContent;
     }
 }
 function setupKeypad(){
@@ -63,16 +63,16 @@ function setupKeypad(){
         item.addEventListener('click', () =>{
             if(firstNum == null && operator == null){
                 displayNumber(item);
-                firstNum = displayedResult.textContent;
+                firstNum = display.textContent;
             }else if(firstNum != null && operator == null){
                 displayNumber(item);
-                firstNum = displayedResult.textContent;
-            }else if(displayedResult.textContent == result && displayedResult.textContent == firstNum){
-                displayedResult.textContent = item.textContent;
-                secondNum = displayedResult.textContent;
+                firstNum = display.textContent;
+            }else if(display.textContent == result && display.textContent == firstNum){
+                display.textContent = item.textContent;
+                secondNum = display.textContent;
             }else{
                 displayNumber(item);
-                secondNum = displayedResult.textContent;
+                secondNum = display.textContent;
             }
         })
     })
@@ -89,7 +89,7 @@ function setupOperators(){
                 firstNum = result;
                 secondNum = null;
                 operator = item.textContent;
-                displayedResult.textContent = result;
+                display.textContent = result;
             }
         })
     })
@@ -99,9 +99,9 @@ function setupEquals(){
     equalsButton.addEventListener('click', () =>{
         try{
             result = operate(firstNum, operator, secondNum);
-            displayedResult.textContent = result;
+            display.textContent = result;
         }catch(err){
-            displayedResult.textContent = '0';
+            display.textContent = '0';
             firstNum = null;
             secondNum = null;
             result = null;
@@ -115,7 +115,7 @@ function setupEquals(){
 function setupClear(){
     const clear = document.querySelector('#keypad #clear');
     clear.addEventListener('click', () =>{
-        displayedResult.textContent = '0';
+        display.textContent = '0';
         firstNum = null;
         secondNum = null;
         result = null;
