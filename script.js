@@ -44,8 +44,12 @@ function operate(num1, operation, num2){
 function displayNumber(item){
     if(displayedResult.textContent === '0'){
         displayedResult.textContent = item.textContent;
-    }else if(firstNum !== null && secondNum == null){
+    }else if(firstNum !== null && result !== null && secondNum == null){
         displayedResult.textContent = item.textContent;
+        console.log('this is bugged');
+    }else if(firstNum != null && operator != null && secondNum == null){
+        displayedResult.textContent = item.textContent;
+        console.log('reset display for secondnum');
     }
     else{
         displayedResult.textContent += item.textContent;
@@ -54,15 +58,22 @@ function displayNumber(item){
 function setupKeypad(){
     buttons.forEach((item) =>{
         item.addEventListener('click', () =>{
-            if(firstNum === null){
+            if(firstNum == null && operator == null){
                 displayNumber(item);
                 firstNum = displayedResult.textContent;
+                console.log('firstnum if: ' + firstNum);
+            }else if(firstNum != null && operator == null){
+                displayNumber(item);
+                firstNum = displayedResult.textContent;
+                console.log('firstnum else if: ' + firstNum);
             }else if(displayedResult.textContent == result && displayedResult.textContent == firstNum){
                 displayedResult.textContent = item.textContent;
                 secondNum = displayedResult.textContent;
+                console.log('secondnum else if: ' + secondNum);
             }else{
                 displayNumber(item);
                 secondNum = displayedResult.textContent;
+                console.log('secondnum else: ' + secondNum);
             }
         })
     })
@@ -73,6 +84,7 @@ function setupOperators(){
         item.addEventListener('click', () =>{
             if(operator == null){
                 operator = item.textContent;
+                console.log('operator null cond: ' + operator);
             }
             else if(firstNum != null && operator != null && secondNum != null){
                 result = operate(firstNum, operator, secondNum);
@@ -80,6 +92,7 @@ function setupOperators(){
                 secondNum = null;
                 operator = item.textContent;
                 displayedResult.textContent = result;
+                console.log('operator pressed again: ' + operator)
             }
         })
     })
